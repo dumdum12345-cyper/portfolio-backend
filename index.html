@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Chidubem Francis — Developer Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--black:#0c0c0c;--white:#f7f5f0;--orange:#ff4d00;--blue:#0057ff;--green:#00c875;--light:#f0ede6;--border:#e0ddd6;--gray:#888;--ff-head:'Bebas Neue',sans-serif;--ff-body:'DM Sans',sans-serif;--ff-mono:'JetBrains Mono',monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--black);font-family:var(--ff-body);-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* NAVBAR */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,245,240,0.95);backdrop-filter:blur(12px);border-bottom:2px solid var(--black);transition:box-shadow 0.3s;}
+.nav.scrolled{box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 28px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-family:var(--ff-head);font-size:28px;color:var(--black);}
+.nav-logo span{color:var(--orange);}
+.nav-links{list-style:none;display:flex;gap:2px;}
+.nav-links a{font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:7px 13px;border-radius:4px;color:var(--black);transition:all 0.18s;}
+.nav-links a:hover{background:var(--black);color:var(--white);}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--black);border-radius:2px;transition:all 0.3s;}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--black);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:64px;}
+.hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(255,77,0,0.16) 0%,transparent 65%);top:-80px;right:-80px;pointer-events:none;}
+.hero::after{content:'';position:absolute;width:380px;height:380px;background:radial-gradient(circle,rgba(0,87,255,0.1) 0%,transparent 65%);bottom:0;left:-60px;pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:80px 28px 100px;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);border:1px solid var(--green);padding:6px 16px;border-radius:99px;margin-bottom:28px;}
+.hero-tag::before{content:'';width:7px;height:7px;background:var(--green);border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-name{font-family:var(--ff-head);font-size:clamp(72px,12vw,156px);line-height:0.9;color:var(--white);letter-spacing:-0.01em;margin-bottom:24px;}
+.hero-role{font-family:var(--ff-mono);font-size:clamp(16px,2.2vw,22px);color:var(--orange);font-weight:700;margin-bottom:20px;min-height:30px;}
+.cursor{animation:blink 0.8s step-end infinite;}
+.hero-bio{font-size:17px;line-height:1.7;color:rgba(247,245,240,0.6);max-width:500px;margin-bottom:40px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:60px;}
+.hero-scroll{display:flex;align-items:center;gap:12px;font-family:var(--ff-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(247,245,240,0.3);}
+.scroll-line{width:48px;height:1px;background:rgba(247,245,240,0.2);position:relative;overflow:hidden;}
+.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--orange);animation:sweep 2s ease infinite;}
+@keyframes sweep{0%{left:-100%}100%{left:100%}}
+
+/* BUTTONS */
+.btn{display:inline-block;font-family:var(--ff-mono);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:13px 28px;border-radius:5px;border:2px solid transparent;cursor:pointer;transition:all 0.2s ease;}
+.btn-white{background:var(--white);color:var(--black);border-color:var(--white);}
+.btn-white:hover{background:var(--orange);border-color:var(--orange);color:var(--white);}
+.btn-ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,0.3);}
+.btn-ghost:hover{border-color:var(--white);}
+.btn-primary{background:var(--orange);color:var(--white);border-color:var(--orange);}
+.btn-primary:hover{background:transparent;color:var(--orange);}
+.btn-outline{background:transparent;color:var(--black);border-color:var(--black);}
+.btn-outline:hover{background:var(--black);color:var(--white);}
+
+/* SECTIONS */
+.section{padding:96px 0;}
+.container{max-width:1160px;margin:0 auto;padding:0 28px;}
+.section-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.section-num{font-family:var(--ff-head);font-size:14px;color:var(--orange);letter-spacing:0.1em;}
+.section-label{font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);}
+.section-title{font-family:var(--ff-head);font-size:clamp(38px,5.5vw,68px);line-height:1.0;color:var(--black);margin-bottom:40px;}
+.section-title em{font-style:normal;color:var(--orange);}
+
+/* ABOUT */
+.about{background:var(--light);border-top:2px solid var(--black);border-bottom:2px solid var(--black);}
+.about-grid{display:grid;grid-template-columns:320px 1fr;gap:72px;align-items:center;}
+.photo-block{position:relative;}
+.photo{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;border:3px solid var(--black);}
+.photo-badge{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:var(--black);color:var(--white);font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:8px 18px;border-radius:99px;white-space:nowrap;}
+.badge-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:blink 2s infinite;}
+.about-text-col p{font-size:16px;line-height:1.8;color:#444;margin-bottom:16px;}
+.about-text-col p strong{color:var(--black);font-weight:700;}
+.about-stats{display:flex;gap:40px;margin-top:36px;padding-top:28px;border-top:2px solid var(--border);flex-wrap:wrap;}
+.astat{display:flex;flex-direction:column;}
+.astat strong{font-family:var(--ff-head);font-size:52px;line-height:1;color:var(--orange);}
+.astat span{font-family:var(--ff-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);margin-top:4px;}
+
+/* PROJECTS */
+.projects{background:var(--white);}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.pcard{background:#fff;border:2px solid var(--black);border-radius:6px;padding:28px;display:flex;flex-direction:column;gap:12px;transition:transform 0.22s,box-shadow 0.22s;position:relative;}
+.pcard:hover{transform:translate(-4px,-4px);box-shadow:5px 5px 0 var(--black);}
+.pcard-featured{background:var(--orange);border-color:var(--orange);color:var(--white);}
+.pcard-featured:hover{box-shadow:5px 5px 0 rgba(0,0,0,0.25);}
+.pcard-soon{background:var(--light);border-style:dashed;}
+.pcard-soon:hover{transform:none;box-shadow:none;}
+.pcard-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.pcard-emoji{font-size:32px;}
+.pcard-links{display:flex;gap:8px;}
+.pcard-links a{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1.5px solid currentColor;border-radius:4px;opacity:0.55;transition:opacity 0.2s;}
+.pcard-links a svg{width:14px;height:14px;}
+.pcard-links a:hover{opacity:1;}
+.pcard-badge{position:absolute;top:14px;right:14px;font-family:var(--ff-mono);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--white);color:var(--orange);padding:3px 9px;border-radius:3px;}
+.pcard h3{font-family:var(--ff-head);font-size:24px;letter-spacing:0.02em;line-height:1.1;}
+.pcard p{font-size:14px;line-height:1.7;flex:1;opacity:0.7;}
+.pcard-featured p{color:var(--white);opacity:0.88;}
+.pcard-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.pcard-tags span{font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 10px;border-radius:3px;background:var(--light);color:var(--black);border:1px solid var(--border);}
+.pcard-featured .pcard-tags span{background:rgba(255,255,255,0.2);color:var(--white);border-color:rgba(255,255,255,0.25);}
+
+/* SKILLS */
+.skills{background:var(--black);border-top:2px solid var(--black);}
+.skills .section-title{color:var(--white);}
+.skills .section-label{color:rgba(247,245,240,0.35);}
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.skills-bars{display:flex;flex-direction:column;gap:22px;}
+.sbar-top{display:flex;justify-content:space-between;font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--white);margin-bottom:8px;}
+.sbar-track{height:5px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;}
+.sbar-fill{height:100%;width:0;border-radius:99px;background:var(--orange);transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
+.skills-pills{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;padding-top:8px;}
+.pill{font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:10px 16px;border-radius:4px;border:1.5px solid rgba(255,255,255,0.13);color:rgba(247,245,240,0.65);transition:all 0.2s;cursor:default;}
+.pill:hover{border-color:var(--orange);color:var(--orange);}
+
+/* RESUME */
+.resume{background:var(--light);border-top:2px solid var(--black);border-bottom:2px solid var(--black);}
+.resume-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start;}
+.resume-text p{font-size:16px;line-height:1.8;color:#444;margin-bottom:28px;}
+.resume-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.resume-viewer{background:#fff;border:2px solid var(--black);border-radius:6px;overflow:hidden;}
+.pdf-bar{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;background:var(--black);color:var(--white);font-family:var(--ff-mono);font-size:11px;font-weight:700;letter-spacing:0.06em;}
+.pdf-bar a{color:var(--orange);}
+.resume-viewer iframe{width:100%;height:620px;border:none;display:block;}
+
+/* CONTACT */
+.contact{background:var(--white);}
+.contact-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:72px;align-items:start;}
+.contact-left p{font-size:16px;line-height:1.8;color:#444;margin-bottom:32px;}
+.contact-links{display:flex;flex-direction:column;gap:10px;}
+.clink{display:flex;align-items:center;gap:14px;padding:15px 18px;border:2px solid var(--border);border-radius:7px;font-size:14px;font-weight:500;color:var(--black);transition:all 0.2s;}
+.clink:hover{border-color:var(--orange);color:var(--orange);transform:translateX(4px);}
+.clink-icon{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:var(--light);border-radius:5px;font-size:15px;font-weight:700;font-family:var(--ff-mono);flex-shrink:0;}
+.contact-form-wrap{background:var(--black);border-radius:8px;padding:36px;}
+#contactForm{display:flex;flex-direction:column;gap:16px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-family:var(--ff-mono);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(247,245,240,0.4);}
+.fg input,.fg textarea{font-family:var(--ff-body);font-size:14px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.12);border-radius:5px;padding:11px 13px;color:var(--white);outline:none;transition:border-color 0.2s;resize:none;width:100%;}
+.fg input:focus,.fg textarea:focus{border-color:var(--orange);}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,0.22);}
+.contact-form-wrap .btn-primary{width:100%;text-align:center;}
+.form-msg{font-family:var(--ff-mono);font-size:12px;text-align:center;min-height:18px;}
+
+/* FOOTER */
+.footer{background:var(--black);border-top:1px solid rgba(255,255,255,0.07);padding:36px 28px;text-align:center;font-family:var(--ff-mono);font-size:12px;letter-spacing:0.06em;color:rgba(247,245,240,0.35);}
+.footer strong{color:var(--white);}
+.footer-sub{margin-top:6px;opacity:0.5;}
+
+/* RESPONSIVE */
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:48px;}.photo-block{max-width:280px;margin:0 auto;}.projects-grid{grid-template-columns:1fr;}.skills-layout{grid-template-columns:1fr;gap:40px;}.resume-layout{grid-template-columns:1fr;}.resume-viewer{display:none;}.contact-layout{grid-template-columns:1fr;gap:48px;}}
+@media(max-width:700px){.nav-links{display:none;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:var(--white);border-bottom:2px solid var(--black);padding:10px 0;}.nav-links.open{display:flex;}.nav-links a{padding:12px 24px;border-radius:0;width:100%;}.nav-burger{display:flex;}.section{padding:72px 0;}.container{padding:0 18px;}.hero-inner{padding:60px 18px 80px;}.frow{grid-template-columns:1fr;}.resume-btns{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">CF<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Available for internships &amp; grad roles</div>
+    <h1 class="hero-name">Chidubem<br/>Francis.</h1>
+    <p class="hero-role"><span id="typed"></span><span class="cursor">|</span></p>
+    <p class="hero-bio">Final-year BCA student from Nigeria, based in India.<br/>I build web apps, chatbots &amp; things that solve real problems.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-white">See My Work</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+    <div class="hero-scroll"><span>scroll</span><div class="scroll-line"></div></div>
+  </div>
+</section>
+
+<section class="about section" id="about">
+  <div class="container">
+    <div class="section-head"><span class="section-num">02</span><span class="section-label">About Me</span></div>
+    <div class="about-grid">
+      <div class="about-photo-col">
+        <div class="photo-block">
+          <img src="image.png" alt="Chidubem Francis" class="photo"/>
+          <div class="photo-badge"><span class="badge-dot"></span>Open to work</div>
+        </div>
+      </div>
+      <div class="about-text-col">
+        <h2 class="section-title">Building with purpose,<br/><em>growing through challenge.</em></h2>
+        <p>I'm a final-year <strong>BCA student</strong> passionate about software development and creating digital solutions that matter. Originally from <strong>Nigeria</strong>, I moved to India to pursue my degree — navigating a new country while building a career in tech.</p>
+        <p>My journey hasn't been perfect, and that's the point. Early struggles taught me resilience. By my second year I had turned things around completely — achieving my <strong>best academic results</strong> and doubling down on real-world projects.</p>
+        <p>My long-term goal is simple: <strong>build impactful software</strong> that makes a genuine difference.</p>
+        <div class="about-stats">
+          <div class="astat"><strong class="astat-n" data-target="3">0</strong>+<span>Projects</span></div>
+          <div class="astat"><strong class="astat-n" data-target="5">0</strong>+<span>Certificates</span></div>
+          <div class="astat"><strong class="astat-n" data-target="3">0</strong><span>Years BCA</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects section" id="projects">
+  <div class="container">
+    <div class="section-head"><span class="section-num">03</span><span class="section-label">Projects</span></div>
+    <h2 class="section-title">Things I've <em>built</em></h2>
+    <div class="projects-grid">
+      <div class="pcard">
+        <div class="pcard-top"><span class="pcard-emoji">💬</span>
+          <div class="pcard-links">
+            <a href="https://github.com/dumdum12345-cyper" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z"/></svg></a>
+            <a href="https://web-production-c1762.up.railway.app/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+        <h3>Student Help-Desk Chatbot</h3>
+        <p>An intelligent chatbot that handles academic queries and help-desk requests, reducing manual support load for students.</p>
+        <div class="pcard-tags"><span>Python</span><span>NLP</span><span>Chatbot</span></div>
+      </div>
+      <div class="pcard pcard-featured">
+        <div class="pcard-top"><span class="pcard-emoji">🛒</span>
+          <div class="pcard-links">
+            <a href="https://github.com/dumdum12345-cyper" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z"/></svg></a>
+            <a href="https://un-francis.netlify.app/" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+          </div>
+        </div>
+        <span class="pcard-badge">Featured</span>
+        <h3>UN Stores Web Platform</h3>
+        <p>Full web platform for UN Stores — product listings, responsive UI, and a smooth shopping experience built from scratch.</p>
+        <div class="pcard-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-top"><span class="pcard-emoji">🌐</span>
+          <div class="pcard-links"><a href="https://github.com/dumdum12345-cyper" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12c0-5.523-4.477-10-10-10z"/></svg></a></div>
+        </div>
+        <h3>Web Dev Projects</h3>
+        <p>A series of frontend projects exploring responsive layouts, interactive UI and clean design patterns during self-study.</p>
+        <div class="pcard-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+      </div>
+      <div class="pcard pcard-soon">
+        <div class="pcard-top"><span class="pcard-emoji">🚀</span></div>
+        <h3>Next Project</h3>
+        <p>Something new is in the works. Follow my GitHub to see what I build next.</p>
+        <div class="pcard-tags"><span>Coming Soon</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills section" id="skills">
+  <div class="container">
+    <div class="section-head"><span class="section-num">04</span><span class="section-label">Skills</span></div>
+    <h2 class="section-title">What I work <em>with</em></h2>
+    <div class="skills-layout">
+      <div class="skills-bars" id="skillBars">
+        <div class="sbar"><div class="sbar-top"><span>HTML &amp; CSS</span><span>90%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="90"></div></div></div>
+        <div class="sbar"><div class="sbar-top"><span>JavaScript</span><span>75%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="75"></div></div></div>
+        <div class="sbar"><div class="sbar-top"><span>Python</span><span>70%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="70"></div></div></div>
+        <div class="sbar"><div class="sbar-top"><span>Web Development</span><span>80%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="80"></div></div></div>
+        <div class="sbar"><div class="sbar-top"><span>Chatbot / NLP</span><span>65%</span></div><div class="sbar-track"><div class="sbar-fill" data-w="65"></div></div></div>
+      </div>
+      <div class="skills-pills">
+        <span class="pill">VS Code</span><span class="pill">Git &amp; GitHub</span><span class="pill">Responsive Design</span><span class="pill">Problem Solving</span><span class="pill">REST APIs</span><span class="pill">UI Design</span><span class="pill">Debugging</span><span class="pill">Agile Basics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="resume section" id="resume">
+  <div class="container">
+    <div class="section-head"><span class="section-num">05</span><span class="section-label">Resume</span></div>
+    <div class="resume-layout">
+      <div class="resume-text">
+        <h2 class="section-title">My <em>CV</em></h2>
+        <p>Motivated final-year BCA student with hands-on experience building web applications and chatbots. Demonstrated growth and resilience — achieving my strongest academic results in year two. Eager to contribute to a forward-thinking team.</p>
+        <div class="resume-btns">
+          <a href="resume.pdf" download class="btn btn-primary">Download CV</a>
+          <a href="resume.pdf" target="_blank" class="btn btn-outline">Open PDF</a>
+        </div>
+      </div>
+      <div class="resume-viewer">
+        <div class="pdf-bar"><span>📄 Chidubem_Francis_CV.pdf</span><a href="resume.pdf" download>↓ Download</a></div>
+        <iframe src="resume.pdf" title="Resume"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="section-head"><span class="section-num">06</span><span class="section-label">Contact</span></div>
+    <div class="contact-layout">
+      <div class="contact-left">
+        <h2 class="section-title">Let's <em>talk.</em></h2>
+        <p>Open to internships, grad roles, collaborations, or just a good conversation about tech. I respond quickly.</p>
+        <div class="contact-links">
+          <a href="mailto:Ugwokechidubem56@gmail.com" class="clink"><span class="clink-icon">✉</span><span>Ugwokechidubem56@gmail.com</span></a>
+          <a href="https://github.com/dumdum12345-cyper" target="_blank" class="clink"><span class="clink-icon">GH</span><span>github.com/dumdum12345-cyper</span></a>
+          <a href="https://www.linkedin.com/in/chidubem-ugwoke-926206284/" target="_blank" class="clink"><span class="clink-icon">in</span><span>linkedin.com/in/chidubem-ugwoke</span></a>
+          <a href="https://wa.me/2349021954730" target="_blank" class="clink"><span class="clink-icon">📱</span><span>WhatsApp Me</span></a>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <form id="contactForm">
+          <div class="frow">
+            <div class="fg"><label>Name</label><input type="text" placeholder="Your name" required/></div>
+            <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" required/></div>
+          </div>
+          <div class="fg"><label>Message</label><textarea rows="5" placeholder="Say hello..." required></textarea></div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-msg" id="formMsg"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Designed &amp; built by <strong>Chidubem Francis Ugwoke</strong> · © 2026</p>
+  <p class="footer-sub">BCA Final Year · Aspiring Software Developer</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // TYPED TEXT
+  const roles = ['Software Developer','Web Developer','Problem Solver','BCA Final Year','Builder of Things'];
+  const typedEl = document.getElementById('typed');
+  let ri=0,ci=0,deleting=false;
+  function type(){
+    if(!typedEl)return;
+    const word=roles[ri];
+    typedEl.textContent=deleting?word.slice(0,ci--):word.slice(0,ci++);
+    if(!deleting&&ci>word.length){setTimeout(()=>{deleting=true;type();},1800);return;}
+    if(deleting&&ci<0){deleting=false;ri=(ri+1)%roles.length;ci=0;}
+    setTimeout(type,deleting?60:100);
+  }
+  type();
+
+  // NAVBAR
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>10));
+
+  // MOBILE MENU
+  const burger=document.getElementById('burger');
+  const navLinks=document.querySelector('.nav-links');
+  burger.addEventListener('click',()=>{
+    navLinks.classList.toggle('open');
+    const bars=burger.querySelectorAll('span');
+    const open=navLinks.classList.contains('open');
+    bars[0].style.transform=open?'translateY(7px) rotate(45deg)':'';
+    bars[1].style.opacity=open?'0':'1';
+    bars[2].style.transform=open?'translateY(-7px) rotate(-45deg)':'';
+  });
+  navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    navLinks.classList.remove('open');
+    burger.querySelectorAll('span').forEach(s=>{s.style.transform='';s.style.opacity='1';});
+  }));
+
+  // SCROLL REVEAL for all sections
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.style.transform='translateY(0)';
+      }
+    });
+  },{threshold:0.08});
+
+  // Apply reveal to all section content
+  document.querySelectorAll('.section-head,.section-title,.about-grid,.projects-grid .pcard,.skills-layout,.resume-layout,.contact-layout,.about-photo-col,.about-text-col').forEach(el=>{
+    el.style.opacity='0';
+    el.style.transform='translateY(30px)';
+    el.style.transition='opacity 0.7s ease, transform 0.7s ease';
+    obs.observe(el);
+  });
+
+  // COUNT-UP
+  const statsObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('.astat-n').forEach(el=>{
+        const target=+el.dataset.target;let n=0;
+        const step=()=>{n+=Math.ceil(target/24);el.textContent=Math.min(n,target);if(n<target)requestAnimationFrame(step);};
+        requestAnimationFrame(step);
+      });
+      statsObs.unobserve(e.target);
+    });
+  },{threshold:0.4});
+  const statsEl=document.querySelector('.about-stats');
+  if(statsEl)statsObs.observe(statsEl);
+
+  // SKILL BARS
+  const barsObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('.sbar-fill').forEach(bar=>{bar.style.width=bar.dataset.w+'%';});
+      barsObs.unobserve(e.target);
+    });
+  },{threshold:0.3});
+  const skillsEl=document.getElementById('skillBars');
+  if(skillsEl)barsObs.observe(skillsEl);
+
+  // CONTACT FORM
+  const form=document.getElementById('contactForm');
+  const msg=document.getElementById('formMsg');
+  if(form){
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const btn=form.querySelector('button[type="submit"]');
+      btn.textContent='Sending...';btn.disabled=true;
+      const data={
+        name:form.querySelector('input[type="text"]').value,
+        email:form.querySelector('input[type="email"]').value,
+        message:form.querySelector('textarea').value,
+      };
+      try{
+        const res=await fetch('https://formspree.io/f/mreyqzzr',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+        if(res.ok){msg.style.color='#00c875';msg.textContent="✓ Message sent! I'll get back to you soon.";form.reset();}
+        else{msg.style.color='#ff4d00';msg.textContent='✗ Something went wrong. Please try again.';}
+      }catch{msg.style.color='#ff4d00';msg.textContent='✗ Network error. Email me directly.';}
+      finally{btn.textContent='Send Message';btn.disabled=false;}
+    });
+  }
+});
+</script>
+</body>
+</html>
